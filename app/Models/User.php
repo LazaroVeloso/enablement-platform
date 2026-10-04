@@ -24,7 +24,7 @@ class User extends Authenticatable
      */
 
     protected $fillable = [
-        'nome',
+        'name',
         'email',
         'password',
         'cpf',
@@ -43,4 +43,7 @@ class User extends Authenticatable
         return $this->belongsTo(UsuarioHasTrilhas::class, 'usuarios_id');
     }
 
+    public function tipo() {
+        return $this->belongsTo(Tipos::class, 'tipos_id');
+    }
 }

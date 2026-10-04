@@ -18,7 +18,7 @@ class Trilhas extends Model
     protected $casts = [
         'data_inicio' => 'date',
         'data_fim' => 'date',
-        'ativo' => 'boolean,'
+        'ativo' => 'boolean'
     ];
 
     public function responsavel() {
