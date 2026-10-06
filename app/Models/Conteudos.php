@@ -13,11 +13,11 @@ class Conteudos extends Model
         'sequencia',
         'descricao',
         'formato',
+        'trilhas_id',
     ];
 
-    public function responsavel() {
-        return $this->belongsTo(Trilhas::class, 'conteudos_id');
+    public function trilha() {
+        return $this->belongsTo(Trilhas::class, 'trilhas_id');
     }
-
 
 }

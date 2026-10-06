@@ -47,8 +47,8 @@ class TrilhasController extends Controller
 
     public function create() {
 
-        $users = User::whereHas('tipo', function (Builder $query) {
-            $query->where('nome', 'gestor');
+        $users = User::whereHas('tipo', function (Builder $query) {  
+            $query->where('nome', 'gestor'); // query = pesquisa no banco
         })->get();
 
         return view('trilhas.create', compact('users'));

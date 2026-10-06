@@ -13,7 +13,6 @@
         @error('name')
             <span>{{ $message }}</span>
         @enderror
-        
     </div>
 
     <div>
@@ -43,9 +42,7 @@
     </div>
 
     <div>
-        <label for="responsavel_id">Responsável</label> <!--
-        <input type="number" id="responsavel_id" name="responsavel_id" value="{{ old('responsavel_id', $trilha->responsavel_id) }}" required>
-        -->
+        <label for="responsavel_id">Responsável</label> 
         <select name="responsavel_id" id="responsavel_id" required>
             <option value="">Selecione</option>    <!-- adicionar old -->
             @foreach ($users as $user)
