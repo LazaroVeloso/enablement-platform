@@ -59,5 +59,7 @@
         @endforeach
         </tbody>
     </table>
+    <button onclick="history.back()">Voltar</button>
+
 
 @endsection

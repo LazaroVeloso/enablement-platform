@@ -31,7 +31,8 @@
 
     <button type="submit">Salvar alterações</button>
     <a href="{{ route('users.index') }}">Cancelar</a>
-    <a href="{{ route('users.index') }}">Voltar</a>
+    <button onclick="history.back()">Voltar</button>
+
 </form>
 
 @endsection

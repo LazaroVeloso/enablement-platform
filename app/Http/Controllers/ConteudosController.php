@@ -49,7 +49,8 @@ class ConteudosController extends Controller
     }
 
     public function show(Conteudos $conteudo) { 
-        return view('conteudos.show', compact('conteudo'));
+        $trilha_id = $conteudo->trilhas_id;
+        return view('conteudos.show', compact('conteudo', 'trilha_id'));
     }
 
     public function edit(Conteudos $conteudo) {
@@ -65,7 +66,7 @@ class ConteudosController extends Controller
             'sequencia'  => 'required|integer',
             'descricao'  => 'nullable|string',
             'formato'    => 'required|string|max:255',
-            'trilhas_id' => 'required|integer|exists:trilhas,id',
+            'trilhas_id' => 'required|integer|exists:trilhas_id',
         ]);
 
         $conteudo->update($dados);
@@ -75,6 +76,7 @@ class ConteudosController extends Controller
 
     // DELETE
     public function destroy(Conteudos $conteudo) {
+        //@dd($conteudo);
         $conteudo->delete();
 
         return redirect()->route('conteudos.index')->with('success', 'Conteúdo removido! ');

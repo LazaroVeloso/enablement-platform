@@ -19,7 +19,11 @@
     </p>
     <p>Responsavel: {{ $trilha->responsavel->name }}</p>
 
+    @foreach ($trilha->possuiConteudos as $conteudo)
+        <p>Conteúdo: {{ $conteudo->nome }} <a href="{{ route('conteudos.show', $conteudo->id) }}">Detalhes</a> </p>
+    @endforeach
+
     <a href="{{ route('trilhas.edit', $trilha->id) }}">Editar</a>
-    <a href="{{ route('trilhas.index') }}">Voltar</a>
+    <button onclick="history.back()">Voltar</button>
 
 @endsection

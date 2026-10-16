@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Trilhas extends Model
 {
@@ -27,6 +28,10 @@ class Trilhas extends Model
 
     public function tabelaResponsavel() {
         return $this->belongsTo(UsuarioHasTrilhas::class, 'trilhas_id');
+    }
+
+    public function possuiConteudos(): HasMany {
+        return $this->hasMany(Conteudos::class, 'trilhas_id');
     }
 
 }

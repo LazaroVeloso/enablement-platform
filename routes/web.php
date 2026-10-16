@@ -34,7 +34,7 @@ Route::get('/conteudos/create', [ConteudosController::class, 'create'])->name('c
 Route::get('/conteudos/{conteudo}', [ConteudosController::class, 'show'])->name('conteudos.show');
 Route::get('/conteudos/{conteudo}/edit', [ConteudosController::class, 'edit'])->name('conteudos.edit');
 Route::post('/conteudos', [ConteudosController::class, 'store'])->name('conteudos.store');
-Route::put('/conteudos/{conteudos}', [ConteudosController::class, 'update'])->name('conteudos.update');
-Route::delete('/conteudos/{conteudos}', [ConteudosController::class, 'destroy'])->name('conteudos.destroy');
+Route::put('/conteudos/{conteudo}', [ConteudosController::class, 'update'])->name('conteudos.update');
+Route::delete('/conteudos/{conteudo}', [ConteudosController::class, 'destroy'])->name('conteudos.destroy');
 
 

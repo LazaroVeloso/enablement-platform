@@ -47,7 +47,7 @@
 
     <button type="submit">Enviar</button>
     <a href="{{ route('conteudos.index') }}">Cancelar</a>
-    <a href="{{ route('conteudos.index') }}">Voltar</a>
+    <button onclick="history.back()">Voltar</button>
     </form>
 
 

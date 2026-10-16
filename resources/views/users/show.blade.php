@@ -7,6 +7,7 @@
     <p>CPF: {{ $user->cpf }}</p>
 
     <a href="{{ route('users.edit', $user->id) }}">Editar</a>
-    <a href="{{ route('users.index') }}">Voltar</a>
+    <button onclick="history.back()">Voltar</button>
+
 
 @endsection
