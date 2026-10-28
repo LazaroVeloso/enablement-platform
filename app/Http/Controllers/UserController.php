@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Tipos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -42,16 +43,19 @@ class UserController extends Controller
     }
 
     public function create() {
-        return view('users.create');
+        $tipos = Tipos::all();
+        return view('users.create', compact('tipos'));
     }
 
     public function show(User $user) { 
         //@dd($user);
+        $user->load('tipo'); 
         return view('users.show', compact('user'));
     }
 
     public function edit(User $user) {
-        return view('users.edit', compact('user'));
+        $tipos = Tipos::all(); 
+        return view('users.edit', compact('user', 'tipos'));
     }
 
     //UPDATE
@@ -60,6 +64,7 @@ class UserController extends Controller
             'name' => 'required|string|max: 225',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'cpf' => 'required|string|unique:users,cpf,' . $user->id,
+            'tipos_id' => 'required|integer|exists:tipos,id',
         ]);
 
         $user->update($dados);

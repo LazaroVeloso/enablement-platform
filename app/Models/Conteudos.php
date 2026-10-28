@@ -28,8 +28,6 @@ class Conteudos extends Model
         if (isset($matches[1]))
             return 'https://www.youtube.com/embed/' . $matches[1];
 
-
-
         return $value;
     }
 
