@@ -4,51 +4,50 @@
 
 @section('content')
 
-    <h1>Criação de Conteúdos</h1>
+<div>
+    <a class="inline-block mt-10 ml-4 border-2 hover:text-white hover:bg-black" href="{{ route('trilhas.index') }}">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
+        </svg>
+    </a>
 
-    <form action="{{ route('conteudos.store') }}" method="POST">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @csrf
+<div class="grid min-h-screen place-items-center">
+    <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12">
+        <h1 class="text-xl font-semibold">Novo conteúdo, <span class="font-normal">preencha os dados</span></h1>
+        <form class="mt-6" action="{{ route('conteudos.store') }}" method="POST">
+        @csrf
 
-    <div>
-        <label for="nome">Titulo</label>
-        <input type="text" id="nome" name="nome" required>
+            <label for="nome" class="block text-xs font-semibold text-gray-600 uppercase">Título</label>
+            <input id="nome" type="text" name="nome" placeholder="Ex: Introdução ao HTML" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+
+            <label for="descricao" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Descrição</label>
+            <input id="descricao" type="text" name="descricao" placeholder="Breve descrição do conteúdo" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+
+            <label for="link" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Link</label>
+            <input id="link" type="text" name="link" placeholder="https://..." class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" />
+
+            <label for="trilhas_id" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Trilha</label>
+            <select id="trilhas_id" name="trilhas_id" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required>
+                <option value="">Selecione</option>
+                @foreach($trilhas as $trilha)
+                    <option value="{{ $trilha->id }}" {{ old('trilhas_id') == $trilha->id ? 'selected' : '' }}>
+                        {{ $trilha->titulo }}
+                    </option>
+                @endforeach
+            </select>
+
+            <label for="sequencia" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Sequência</label>
+            <input id="sequencia" type="number" name="sequencia" placeholder="1" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" />
+
+            <label for="formato" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Formato</label>
+            <input id="formato" type="text" name="formato" placeholder="Ex: vídeo, pdf" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" />
+
+            <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                Enviar
+            </button>
+        </form>
     </div>
-
-    <div>
-        <label for="descricao">Descrição</label>
-        <input type="text" id="descricao" name="descricao" required>
-    </div>
-
-    <div>
-        <label for="link">Link</label>
-        <input type="text" id="link" name="link">
-    </div>
-
-    <div>
-        <label for="trilhas_id">Trilha</label>
-        <select id="trilhas_id" name="trilhas_id" required>
-            @foreach($trilhas as $trilha)
-                <option value="{{ $trilha->id }}">{{ $trilha->titulo }}</option>
-            @endforeach
-        </select>
-    </div>
-
-
-    <div>
-        <label for="sequencia">Sequencia</label>
-        <input type="number" id="sequencia" name="sequencia">
-    </div>
-
-    <div>
-        <label for="formato">Formato</label>
-        <input type="text" id="formato" name="formato">
-    </div>
-
-
-    <button type="submit">Enviar</button>
-    <a href="{{ route('conteudos.index') }}">Cancelar</a>
-    <button onclick="history.back()">Voltar</button>
-    </form>
-
+</div>
+</div>
 
 @endsection

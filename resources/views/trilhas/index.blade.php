@@ -2,10 +2,12 @@
 @section('title', 'Listagem')
 
 @section('content')
+
+<div>
     <div class="flex items-center justify-between bg-black text-white">
-        <button class="text-[25px] font-extrabold bg-black text-white  hover:text-yellow-400" onclick="history.back()">
+        <a href="{{ route('home.index') }}" class="text-[25px] font-extrabold bg-black text-white  hover:text-yellow-400">
             Voltar
-        </button>
+        </a>
         <h1 class="text-[54px] font-extrabold bg-black text-white text-center">
             Listagem de Trilhas
         </h1>
@@ -60,6 +62,6 @@
         @endforeach
         </tbody>
     </table>
-
+</div>
 
 @endsection

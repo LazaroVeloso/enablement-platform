@@ -4,16 +4,10 @@
 
 <div>
 
-    <div class="bg-cover bg-center h-30" style="background-image: url('{{ asset('img/mountains.jpg') }}')">
-         <a class=" mt-8 ml-4 border-2 bg-gray-400 hover:text-white hover:bg-black" onclick="history.back()">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
-                </svg>
-         </a>
-    </div>        
+        
     
     <!-- background -->
-    <div class="relative flex min-h-screen flex-col justify-center bg-gradient-to-r from-rose-100 to-teal-100">
+    <div class="relative flex min-h-screen flex-col justify-center bg-slate-300">
         
         <!-- card -->
         <div class="mx-auto flex w-96 flex-col justify-center bg-white rounded-2xl shadow-xl shadow-slate-300/60">

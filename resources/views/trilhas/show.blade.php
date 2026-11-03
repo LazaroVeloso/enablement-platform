@@ -47,7 +47,13 @@
 
         
         <div class="border-2 p-2 bg-[#87CEFA]">
-            <h2 class="font-medium text-2xl text-black">Conteúdos</h2>
+            <div class="flex items-center font-medium text-2xl">
+                <h2 class="text-black">Conteúdos</h2>
+                <a href="{{ route('trilhas.create') }}">
+                    <a href="{{ route('conteudos.create') }}" class="text-[40px] border hover:shadow-lg text-center bg-green-300 w-15 ml-2 h-14 rounded-3xl hover:bg-yellow-300">+</a>
+                </a>
+            </div>
+            <div class="overflow-x-scroll">
             @foreach ($trilha->possuiConteudos as $conteudo)
                 <div class="relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md m-4">
                     <div class="relative mx-4 -mt-4 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
@@ -76,6 +82,7 @@
                     </div>
                 </div>
             @endforeach
+            </div>
         </div>
 
     </div>

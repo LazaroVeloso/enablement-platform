@@ -66,12 +66,12 @@ class ConteudosController extends Controller
             'sequencia'  => 'required|integer',
             'descricao'  => 'nullable|string',
             'formato'    => 'required|string|max:255',
-            'trilhas_id' => 'required|integer|exists:trilhas_id',
+            'trilhas_id' => 'required|integer|exists:trilhas,id',
         ]);
 
         $conteudo->update($dados);
 
-        return redirect()->route('conteudos.index')->with('success', 'Conteúdo atualizado!');
+        return redirect()->route('trilhas.index')->with('success', 'Conteúdo atualizado!');
     }
 
     // DELETE

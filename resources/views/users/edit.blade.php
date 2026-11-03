@@ -4,83 +4,46 @@
 
 
 
-<div>
+<div class="grid min-h-screen place-items-center">
+    <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12">
+        <h1 class="text-xl font-semibold">Editar usuário? <span class="font-normal">preencha os dados</span></h1>
+        <form action="{{ route('users.update', $user->id) }}" method="POST">
+        @csrf
+        @method('PUT')
 
-    <div class="bg-cover bg-center h-30" style="background-image: url('{{ asset('img/mountains.jpg') }}')">
-         <a class=" mt-8 ml-4 border-2 bg-gray-400 hover:text-white hover:bg-black" onclick="history.back()">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
-                </svg>
-         </a>
-    </div>        
-    
-    <!-- background -->
-    <div class="relative flex min-h-screen flex-col justify-center bg-gradient-to-r from-rose-100 to-teal-100">
-        
-        <!-- card -->
-        <div class="mx-auto flex w-96 flex-col justify-center bg-white rounded-2xl shadow-xl shadow-slate-300/60">
-            <!-- img -->
-            <div class="relative w-96">
-                <img class="aspect-video w-96 rounded-t-2xl object-cover object-center" src="https://images.pexels.com/photos/3311574/pexels-photo-3311574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-            </div>
-            <!-- text information -->
-            <div class="p-4">
-                <form action="{{ route('users.update', $user->id) }}" method="POST">
-                    @csrf
-                    @method('PUT')
+            <label for="name" class="block text-xs font-semibold text-gray-600 uppercase">Nome</label>
+            <input id="name" type="text" name="name" value="{{ old('name', $user->name) }}" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+            @error('name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
 
-                    <div class="ml-12">
-                        <label for="name">Nome:</label>
-                        <input class="border-2" type="text" name="name" id="name" value="{{ old('name', $user->name) }}" required>
-                    
-                        @error('name')
-                            <span>{{ $message }}</span>
-                        @enderror
-                        
-                    </div>
+            <label for="email" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">E-mail</label>
+            <input id="email" type="email" name="email" value="{{ old('email', $user->email) }}" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+            @error('email') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
 
-                    <div class="ml-12">
-                        <label for="email">E-mail:</label>
-                        <input class="border-2" type="email" name="email" id="email" value="{{ old('email', $user->email) }}" required>
-                        @error('email') <span>{{ $message }}</span> @enderror
-                    </div>
+            <label for="cpf" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">CPF</label>
+            <input id="cpf" type="text" name="cpf" value="{{ old('cpf', $user->cpf) }}" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+            @error('cpf') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
 
-                    <div class="ml-12"> 
-                        <label for="cpf">CPF:</label>
-                        <input class="border-2" type="text" name="cpf" id="cpf" value="{{ old('cpf', $user->cpf) }}" required>
-                        @error('cpf') <span>{{ $message }}</span> @enderror
-                    </div>
+            <label for="password" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Senha</label>
+            <input id="password" type="password" name="password" placeholder="******" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner placeholder:text-gray-400" />
 
-                    <div class="ml-12"> 
-                        <label for="password">Senha:</label>
-                        <input class="border-2" type="text" name="password" id="password" value="{{ old('password', $user->password) }}" required>
-                        @error('password') <span>{{ $message }}</span> @enderror
-                    </div>
-                    
-                    
-                    <div class="ml-12">
-                        <label for="tipo">Tipo</label> 
-                        <select name="tipos_id" id="tipos_id" class="border-2" required>
-                            <option value="">Selecione</option>    <!-- adicionar old -->
-                            @foreach ($tipos as $tipo)
-                                <option value="{{ $tipo->id }}" 
-                                    {{ old('tipos_id', $user->tipos_id) == $tipo->id ? 'selected' : '' }}>
-                                    {{ $tipo->nome }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('tipos_id') <span>{{ $message }}</span> @enderror
-                    </div>
+            <label for="tipos_id" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Tipo</label>
+            <select id="tipos_id" name="tipos_id" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required>
+                <option value="">Selecione</option>
+                @foreach($tipos as $tipo)
+                    <option value="{{ $tipo->id }}" {{ old('tipos_id', $user->tipos_id) == $tipo->id ? 'selected' : '' }}>
+                        {{ $tipo->nome }}
+                    </option>
+                @endforeach
+            </select>
+            @error('tipos_id') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
 
-                    <div class="ml-12">
-                        <button class="border-2 bg-gray-400 hover:bg-[#00FF00]" type="submit">Salvar</button>
-                        <button class="border-2 bg-gray-400 hover:bg-red-500" href="{{ route('users.index') }}">Cancelar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+            <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                Salvar
+            </button>
+        </form>
     </div>
 </div>
+
 
 @endsection
 
