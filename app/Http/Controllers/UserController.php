@@ -29,13 +29,29 @@ class UserController extends Controller
             'tipos_id' => 'required|int|max:255',
         ]);
 
-        DB::transaction(function () use ($dados) {
+        $imageName = null;
+
+        // image upload
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $requestImage = $request->image;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $request->image->move(public_path('img/users'), $imageName);
+
+        }
+
+        DB::transaction(function () use ($dados, $imageName) {
             User::create([
                 'name' => $dados['nome'],
                 'email' => $dados['email'],
                 'password' => $dados['password'],
                 'cpf' => $dados['cpf'],
                 'tipos_id' => $dados['tipos_id'],  
+                'image' => $imageName,
             ]);
         });
 
@@ -67,6 +83,28 @@ class UserController extends Controller
             'tipos_id' => 'required|integer|exists:tipos,id',
         ]);
 
+        $imageName = $user->image; 
+
+        // image upload
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $ultimaImagem = $user->image;
+
+            $requestImage = $request->image;
+            $extension = $requestImage->extension();
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+            $request->image->move(public_path('img/users'), $imageName);
+
+            if($ultimaImagem && $ultimaImagem !== 'default-user.jpg') {
+                $ultimaImagemCaminho = public_path('img/users/' . $ultimaImagem);
+                if(file_exists($ultimaImagem)) {
+                    unlink($ultimaImagem);
+                }
+            } 
+
+        }
+
+        $dados['image'] = $imageName;
         $user->update($dados);
 
         return redirect()->route('users.index')->with('success', 'Usuário atualizado!');
@@ -74,6 +112,14 @@ class UserController extends Controller
 
     // DELETE
     public function destroy(User $user) {
+
+        if($user->image && $user->image !== 'default-user.jog') {
+            $ultimaImagemCaminho = public_path('img/users/' . $user->image);
+            if(file_exists($ultimaImagemCaminho)) {
+                unlink($ultimaImagemCaminho);
+            }
+        }
+
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'Usuário removido! ');

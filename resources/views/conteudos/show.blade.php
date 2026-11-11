@@ -7,11 +7,11 @@
 
 
 <div class="min-h-screen bg-slate-300">   
-    <button onclick="history.back()" class="inline-block mt-10 ml-4 border-2 hover:text-white hover:bg-black" href="{{ route('trilhas.index') }}">
+    <a  class="inline-block mt-10 ml-4 border-2 hover:text-white hover:bg-black" href="{{ route('trilhas.show', $trilha_id) }}">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
         </svg>
-    </button>
+    </a>
 
     <div  class=" mt-10 mx-auto flex w-150 flex-col justify-center bg-white rounded-2xl shadow-xl shadow-slate-300/60">
             <div class="flex justify-center w-full relative">

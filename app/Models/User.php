@@ -28,7 +28,8 @@ class User extends Authenticatable
         'email',
         'password',
         'cpf',
-        'tipos_id'
+        'tipos_id',
+        'image'
     ];
 
     protected function casts(): array

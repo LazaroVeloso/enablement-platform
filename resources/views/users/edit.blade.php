@@ -7,9 +7,13 @@
 <div class="grid min-h-screen place-items-center">
     <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12">
         <h1 class="text-xl font-semibold">Editar usuário? <span class="font-normal">preencha os dados</span></h1>
-        <form action="{{ route('users.update', $user->id) }}" method="POST">
+        <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+
+            <label for="image" class="block text-xs font-semibold text-gray-600 uppercase">Avatar</label>  
+            <input type="file" id="image" name="image" class="from-control-file">
+            @error('image') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
 
             <label for="name" class="block text-xs font-semibold text-gray-600 uppercase">Nome</label>
             <input id="name" type="text" name="name" value="{{ old('name', $user->name) }}" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />

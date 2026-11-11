@@ -37,4 +37,3 @@ Route::post('/conteudos', [ConteudosController::class, 'store'])->name('conteudo
 Route::put('/conteudos/{conteudo}', [ConteudosController::class, 'update'])->name('conteudos.update');
 Route::delete('/conteudos/{conteudo}', [ConteudosController::class, 'destroy'])->name('conteudos.destroy');
 
-
